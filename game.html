@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Game - Level 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fdf6e3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+    }
+    .level-box {
+      background: #fff;
+      border: 2px solid #000;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div id="level1" class="level-box">
+    <h2>Level 1: Tap the red box</h2>
+    <div style="display: flex; gap: 20px;">
+      <div onclick="wrongChoice()" style="width: 60px; height: 60px; background: blue;"></div>
+      <div onclick="correctChoice()" style="width: 60px; height: 60px; background: red;"></div>
+      <div onclick="wrongChoice()" style="width: 60px; height: 60px; background: green;"></div>
+    </div>
+  </div>
+
+  <div id="level2" class="level-box hidden">
+    <h2>Level 2: Memory Match (Click to flip)</h2>
+    <div id="memoryGrid" style="display: grid; grid-template-columns: repeat(4, 60px); gap: 10px;"></div>
+  </div>
+
+  <div id="level3" class="level-box hidden">
+    <h2>Level 3: Match "❤️" to "Love"</h2>
+    <p>What does "❤️" represent?</p>
+    <button onclick="wrongChoice()">Anger</button>
+    <button onclick="correctChoiceFinal()">Love</button>
+    <button onclick="wrongChoice()">Sadness</button>
+  </div>
+
+  <script>
+    function wrongChoice() {
+      alert("Oops! Try again, madam 😅");
+    }
+
+    function correctChoice() {
+      document.getElementById('level1').classList.add('hidden');
+      setTimeout(() => {
+        document.getElementById('level2').classList.remove('hidden');
+        initMemoryGame();
+      }, 500);
+    }
+
+    function correctChoiceFinal() {
+      window.location.href = 'mood.html';
+    }
+
+    const emojis = ['🍕','🍕','🌸','🌸','❤️','❤️','🎵','🎵'];
+    let firstCard, secondCard;
+    let matchedPairs = 0;
+
+    function initMemoryGame() {
+      const grid = document.getElementById('memoryGrid');
+      let shuffled = emojis.sort(() => 0.5 - Math.random());
+      grid.innerHTML = '';
+      shuffled.forEach((emoji, i) => {
+        let div = document.createElement('div');
+        div.style.background = '#ddd';
+        div.style.border = '1px solid #aaa';
+        div.style.fontSize = '24px';
+        div.style.textAlign = 'center';
+        div.style.lineHeight = '60px';
+        div.style.cursor = 'pointer';
+        div.innerText = '?';
+        div.dataset.emoji = emoji;
+        div.onclick = function() {
+          if (div.innerText !== '?') return;
+          div.innerText = emoji;
+          if (!firstCard) {
+            firstCard = div;
+          } else {
+            secondCard = div;
+            if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
+              matchedPairs++;
+              firstCard = secondCard = null;
+              if (matchedPairs === 4) {
+                document.getElementById('level2').classList.add('hidden');
+                document.getElementById('level3').classList.remove('hidden');
+              }
+            } else {
+              setTimeout(() => {
+                firstCard.innerText = '?';
+                secondCard.innerText = '?';
+                firstCard = secondCard = null;
+              }, 800);
+            }
+          }
+        }
+        grid.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
