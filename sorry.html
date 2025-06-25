@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorry Card 💡</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+    }
+    .card {
+      background: #222;
+      border: 2px solid #ff0066;
+      border-radius: 20px;
+      padding: 40px;
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 0 40px #ff0066;
+      position: relative;
+      animation: flicker 2s infinite;
+    }
+    @keyframes flicker {
+      0% { box-shadow: 0 0 5px #ff0066; }
+      50% { box-shadow: 0 0 30px #ff0066; }
+      100% { box-shadow: 0 0 5px #ff0066; }
+    }
+    .led {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 20px;
+      height: 20px;
+      background-color: #ff0066;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #ff0066;
+      animation: pulse 1s infinite alternate;
+    }
+    @keyframes pulse {
+      from { transform: scale(1); opacity: 0.7; }
+      to { transform: scale(1.2); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="led"></div>
+    <h1>Hey Madam ❤️</h1>
+    <p>Mujhe pata hai tum bahut hurt ho abhi.<br>
+    Mujhe yeh soch ke hi bura lagta hai ki maine tumhe aise feel karwaya.<br>
+    Main chahta hoon ki sirf sorry na kahun — balki yeh dikhaun ki main waaqai serious hoon.<br><br>
+    Tum mere liye sab kuch ho. Tumhari smile, tumhara sarcasm, aur tumhara hona — sab yaad aata hai.<br>
+    Main perfect nahi hoon, lekin main koshish kar raha hoon — tumhare liye, humare liye.<br><br>
+    Main tumse pyaar karta hoon, aur jab bhi tum ready ho, main yahin hoon.<br>
+    Koi pressure nahi, koi jaldi nahi. Bas yeh yaad rakhna — tum akeli nahi ho, aur tum mere liye duniya ho. 💖
+    </p>
+  </div>
+</body>
+</html>
