@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Madam’s Mood 💬</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff0f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    .question {
+      margin-bottom: 30px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      background-color: #ff69b4;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #ff1493;
+    }
+  </style>
+</head>
+<body>
+  <h2>Madam, how are you feeling? 🥺</h2>
+  <div class="question">
+    <p>1. Aaj ka mood?</p>
+    <button>Thoda thakaa hua</button>
+    <button>Thoda naraz 😞</button>
+    <button>Smile on the way 😌</button>
+  </div>
+  <div class="question">
+    <p>2. Kya chahiye abhi?</p>
+    <button onclick="goToCard()">Ek hug 🤗</button>
+    <button onclick="goToCard()">Thoda space 🕊️</button>
+    <button onclick="goToCard()">Mera sorry card 💌</button>
+  </div>
+
+  <script>
+    function goToCard() {
+      window.location.href = 'sorry.html';
+    }
+  </script>
+</body>
+</html>
